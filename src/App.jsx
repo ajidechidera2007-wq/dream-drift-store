@@ -1,77 +1,97 @@
 import React, { useState } from 'react';
 
-const WHATSAPP = "2348083813553"; 
-const INSTAGRAM = "https://www.instagram.com/dreamdrifthairs";
+const WHATSAPP = "2348083813553";
+const INSTAGRAM = "https://www.instagram.com/dreamdrifthairs?igsh=cWdxMzlzdms4NDNp";
 const TIKTOK = "https://www.tiktok.com/@dreamdrifthairs";
 
 const products = [
-  { id: 1, name: "Pixy curlies", display: "Pixy curlies - 24 inches", price: "N168,000", emoji: "💁🏾‍♀️", desc: "Soft pixy curls, full volume" },
-  { id: 2, name: "Bounce", display: "Bounce - 22 inches", price: "N145,000", emoji: "👩🏾‍🦱", desc: "Bouncy luxury bounce curls" },
-  { id: 3, name: "Silky Straight 26", display: "Silky Straight 26 inches", price: "N185,000", emoji: "💇🏾‍♀️", desc: "Bone straight, silky donor hair" },
-  { id: 4, name: "Body Wave Luxe 20", display: "Body Wave Luxe 20 inches", price: "N130,000", emoji: "👸🏾", desc: "Classic body wave" },
+  { id: 1, name: "Pixy curlies", price: "₦168,000", cat: "WIGS", color: "from-pink-200 to-purple-200", emoji: "💁🏽‍♀️" },
+  { id: 2, name: "Bone Straight 20\"", price: "₦202,000", cat: "WIGS", color: "from-purple-200 to-indigo-200", emoji: "🧑🏽" },
+  { id: 3, name: "Classic Bob 12\"", price: "₦98,000", cat: "WIGS", color: "from-violet-200 to-purple-200", emoji: "💇🏽‍♀️" },
+  { id: 4, name: "Bounce", price: "₦145,000", cat: "WIGS", color: "from-purple-100 to-violet-200", emoji: "✨" },
+  { id: 5, name: "Double Drawn", price: "₦85,000", cat: "WEAVON", color: "from-purple-100 to-pink-100", emoji: "🦋" },
+  { id: 6, name: "Lush Wow Braids", price: "₦5,500", cat: "ATTACHMENT", color: "from-pink-200 to-purple-200", emoji: "💜" },
+  { id: 7, name: "X-Pression Ultra", price: "₦4,000", cat: "ATTACHMENT", color: "from-rose-200 to-pink-200", emoji: "💖" },
+  { id: 8, name: "Daring Abigail", price: "₦3,800", cat: "ATTACHMENT", color: "from-violet-100 to-pink-200", emoji: "🦋" },
+  { id: 9, name: "Lush Sasha Locs", price: "₦6,200", cat: "ATTACHMENT", color: "from-yellow-100 to-purple-200", emoji: "✨" },
+  { id: 10, name: "Mielle Rosemary", price: "₦12,000", cat: "CREAM", color: "from-green-100 to-green-200", emoji: "🌿" },
+  { id: 11, name: "Blue Magic Hair", price: "₦4,500", cat: "CREAM", color: "from-blue-100 to-blue-200", emoji: "💙" },
+  { id: 12, name: "Pink Oil", price: "₦5,500", cat: "CREAM", color: "from-pink-100 to-pink-200", emoji: "🩷" },
 ];
 
-export default function App() {
-  const [cart, setCart] = useState([]);
-  const [checkoutProduct, setCheckoutProduct] = useState(null);
-  const [showCheckout, setShowCheckout] = useState(false);
+const categories = ["ALL", "WIGS", "WEAVON", "ATTACHMENT", "CREAM", "ACCESSORIES"];
 
-  const addToCart = (p) => {
-    setCart([...cart, p]);
-    setCheckoutProduct(p);
+export default function App() {
+  const [activeCat, setActiveCat] = useState("ALL");
+  const [cart, setCart] = useState([]);
+  const [showCheckout, setShowCheckout] = useState(false);
+  const [checkoutProduct, setCheckoutProduct] = useState(null);
+
+  const filtered = activeCat === "ALL"? products : products.filter(p => p.cat === activeCat);
+
+  const handleOrder = (product) => {
+    setCart([...cart, product]);
+    setCheckoutProduct(product);
     setShowCheckout(true);
   };
 
+  const payWithCard = () => {
+    const msg = `Hi Dream & Drift! 💖%0A%0AI want to pay with CARD:%0A${checkoutProduct?.name} - ${checkoutProduct?.price}%0A%0APlease confirm availability.`;
+    window.open(`https://wa.me/${WHATSAPP}?text=${msg}`, '_blank');
+  };
+
   return (
-    <div style={{ fontFamily: 'Inter, sans-serif', background: '#fffafb', minHeight: '100vh' }}>
-      <header style={{ padding: '18px 24px', display: 'flex', justifyContent: 'space-between', background: 'white', borderBottom: '1px solid #ffe4e9' }}>
-        <h1 style={{ fontWeight: 900, margin: 0 }}>Dream & Drift</h1>
-        <div style={{ display: 'flex', gap: '12px' }}>
-          <a href={INSTAGRAM} target="_blank">📸</a>
-          <a href={TIKTOK} target="_blank">🎵</a>
-          <span style={{ background: 'black', color: 'white', padding: '6px 12px', borderRadius: '20px', fontSize: '12px' }}>Cart ({cart.length})</span>
+    <div className="min-h-screen bg-[#fff5f8]">
+      <header className="sticky top-0 z-20 bg-white border-b border-pink-100 px-4 py-3 flex justify-between items-center">
+        <div>
+          <h1 className="text-[22px] font-black"><span className="bg-gradient-to-r from-pink-500 to-purple-600 bg-clip-text text-transparent">DREAM</span><span className="text-purple-600">&</span><span className="bg-gradient-to-r from-purple-600 to-pink-500 bg-clip-text text-transparent">DRIFT</span></h1>
+          <p className="text-[10px] tracking-[3px] text-purple-600 font-bold">HAIR AND ACCESSORIES</p>
         </div>
+        <div className="bg-gradient-to-r from-pink-500 to-purple-600 text-white px-4 py-2 rounded-full text-sm font-bold">CART ({cart.length})</div>
       </header>
 
-      <section style={{ textAlign: 'center', padding: '40px 20px' }}>
-        <h2 style={{ fontSize: '32px', fontWeight: 800 }}>Luxury Hair, That Drifts With You</h2>
-        <p style={{ opacity: 0.6 }}>100% Raw Donor • Lagos Delivery</p>
-      </section>
+      <div className="bg-white px-3 py-3 flex gap-2 overflow-x-auto border-b border-purple-100">
+        {categories.map(cat => (
+          <button key={cat} onClick={() => setActiveCat(cat)} className={`px-4 py-2 rounded-full text-xs font-bold whitespace-nowrap border ${activeCat === cat? 'bg-black text-white border-black' : 'bg-white text-purple-600 border-purple-200'}`}>{cat}</button>
+        ))}
+      </div>
 
-      <section style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: '16px', padding: '0 16px 40px', maxWidth: '900px', margin: '0 auto' }}>
-        {products.map(p => (
-          <div key={p.id} style={{ background: 'white', borderRadius: '20px', padding: '16px', border: '1px solid #fff0f3' }}>
-            <div style={{ fontSize: '60px', textAlign: 'center', background: '#fff0f3', borderRadius: '16px', padding: '20px 0' }}>{p.emoji}</div>
-            <h3 style={{ fontSize: '15px', margin: '12px 0 4px' }}>{p.name}</h3>
-            <p style={{ fontSize: '12px', opacity: 0.5 }}>{p.desc}</p>
-            <p style={{ fontWeight: 800 }}>{p.price}</p>
-            <button onClick={() => addToCart(p)} style={{ width: '100%', padding: '12px', borderRadius: '12px', border: 'none', background: 'black', color: 'white', fontWeight: 700 }}>ORDER NOW →</button>
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 p-3">
+        {filtered.map(product => (
+          <div key={product.id} className="bg-white rounded-2xl overflow-hidden shadow-sm border border-pink-50">
+            <div className={`h-32 bg-gradient-to-br ${product.color} flex items-center justify-center text-4xl`}><span>{product.emoji}</span></div>
+            <div className="p-3 text-center">
+              <h3 className="text-[13px] font-semibold text-gray-600">{product.name}</h3>
+              <p className="text-purple-600 font-black text-[15px] my-1.5">{product.price}</p>
+              <button onClick={() => handleOrder(product)} className="w-full bg-gradient-to-r from-pink-500 to-purple-600 text-white text-[10px] font-black py-2.5 rounded-full">ORDER NOW</button>
+            </div>
           </div>
         ))}
-      </section>
+      </div>
 
-      <footer style={{ background: 'black', color: 'white', padding: '30px 20px', textAlign: 'center' }}>
-        <h3>Dream & Drift</h3>
-        <div style={{ display: 'flex', justifyContent: 'center', gap: '20px', margin: '16px 0' }}>
-          <a href={INSTAGRAM} target="_blank" style={{ color: 'white', border: '1px solid #333', padding: '8px 14px', borderRadius: '20px', textDecoration: 'none' }}>📸 Instagram</a>
-          <a href={TIKTOK} target="_blank" style={{ color: 'white', border: '1px solid #333', padding: '8px 14px', borderRadius: '20px', textDecoration: 'none' }}>🎵 TikTok</a>
+      <footer className="bg-black text-white mt-6 p-6 text-center">
+        <h2 className="font-black text-lg">DREAM & DRIFT</h2>
+        <p className="text-xs opacity-60 mt-1">Luxury hair • Lagos • 08083813553</p>
+        <div className="flex justify-center gap-3 mt-4">
+          <a href={INSTAGRAM} target="_blank" className="bg-white text-black px-4 py-2 rounded-full text-xs font-bold">📸 Instagram</a>
+          <a href={TIKTOK} target="_blank" className="bg-white text-black px-4 py-2 rounded-full text-xs font-bold">🎵 TikTok</a>
+          <a href={`https://wa.me/${WHATSAPP}`} target="_blank" className="bg-green-500 text-white px-4 py-2 rounded-full text-xs font-bold">💬 WhatsApp</a>
         </div>
-        <p style={{ fontSize: '11px', opacity: 0.5 }}>© 2026 Dream & Drift</p>
+        <p className="text-[10px] opacity-40 mt-4">© 2026 Dream & Drift</p>
       </footer>
 
       {showCheckout && checkoutProduct && (
-        <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.6)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 99, padding: '20px' }}>
-          <div style={{ background: 'white', borderRadius: '20px', padding: '24px', width: '100%', maxWidth: '380px' }}>
-            <h3>Checkout - {checkoutProduct.display}</h3>
-            <input placeholder="Full Name" style={{ padding: '12px', borderRadius: '10px', border: '1px solid #ddd', width: '100%', marginBottom: '10px' }} />
-            <input placeholder="Phone Number" style={{ padding: '12px', borderRadius: '10px', border: '1px solid #ddd', width: '100%', marginBottom: '10px' }} />
-            <button onClick={()=>{
-              const msg = `Hi Dream & Drift! I want to pay with CARD: ${checkoutProduct.display}`;
-              window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`, '_blank');
-            }} style={{ width: '100%', marginTop: '14px', background: 'black', color: 'white', padding: '14px', borderRadius: '12px', border: 'none' }}>
-              PAY {checkoutProduct.display} WITH CARD →
-            </button>
-            <p style={{ textAlign: 'center', marginTop: '10px', cursor: 'pointer' }} onClick={()=> setShowCheckout(false)}>Close</p>
+        <div className="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4">
+          <div className="bg-white rounded-[20px] w-full max-w-[360px] p-5">
+            <h3 className="font-bold text-center">Checkout - {checkoutProduct.name}</h3>
+            <p className="text-xs text-center opacity-50 mb-3">Orders go to 08083813553</p>
+            <input placeholder="Full Name" className="w-full border border-gray-200 rounded-xl p-3 text-sm mb-2" />
+            <input placeholder="Phone Number" className="w-full border border-gray-200 rounded-xl p-3 text-sm mb-2" />
+            <input placeholder="Delivery Address" className="w-full border border-gray-200 rounded-xl p-3 text-sm mb-2" />
+            <input placeholder="Card Holder Name" className="w-full border border-gray-200 rounded-xl p-3 text-sm" />
+            <button onClick={payWithCard} className="w-full mt-4 bg-gradient-to-r from-[#1e0a2e] to-[#ff2d78] text-white font-black py-3.5 rounded-xl text-sm">PAY {checkoutProduct.name.toUpperCase()} WITH CARD →</button>
+            <p className="text-[8px] text-center mt-2 opacity-40">🔒 256-bit Secure</p>
+            <p className="text-xs text-center mt-3 underline cursor-pointer" onClick={() => setShowCheckout(false)}>Close</p>
           </div>
         </div>
       )}

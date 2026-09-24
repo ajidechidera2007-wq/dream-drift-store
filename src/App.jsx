@@ -12,10 +12,10 @@ export default function App() {
   const WHATSAPP = "2348083813553"
 
   const allProducts = [
-    {name:'Barbie Body Wave 24"', price:168000, display:'₦168,000', cat:'WIGS', brand:'D&D LUXE', emoji:'💁🏾‍♀️', grad:'linear-gradient(135deg, #ffd6e8, #f5d0fe)'},
+    {name:'Pixy curlies', price:168000, display:'₦168,000', cat:'WIGS', brand:'D&D LUXE', emoji:'💁🏾‍♀️', grad:'linear-gradient(135deg, #ffd6e8, #f5d0fe)'},
     {name:'Bone Straight 20" Pink', price:202000, display:'₦202,000', cat:'WIGS', brand:'D&D LUXE', emoji:'👩🏽', grad:'linear-gradient(135deg, #e9d5ff, #d8b4fe)'},
     {name:'Classic Bob 12" Closure', price:98000, display:'₦98,000', cat:'WIGS', brand:'D&D LUXE', emoji:'💇🏽‍♀️', grad:'linear-gradient(135deg, #ddd6fe, #fbcfe8)'},
-    {name:'Raw Donor Bundles 22"', price:145000, display:'₦145,000', cat:'WEAVON', brand:'RAW VIRGIN', emoji:'✨', grad:'linear-gradient(135deg, #fae8ff, #e9d5ff)'},
+    {name:'Bounce', price:145000, display:'₦145,000', cat:'WEAVON', brand:'RAW VIRGIN', emoji:'✨', grad:'linear-gradient(135deg, #fae8ff, #e9d5ff)'},
     {name:'Double Drawn Weavon 18"', price:85000, display:'₦85,000', cat:'WEAVON', brand:'DOUBLE DRAWN', emoji:'🦋', grad:'linear-gradient(135deg, #fce7f3, #ddd6fe)'},
     {name:'Lush Wow Braids', price:5500, display:'₦5,500', cat:'ATTACHMENT', brand:'LUSH', emoji:'💜', grad:'linear-gradient(135deg, #f5d0fe, #fbcfe8)'},
     {name:'X-Pression Ultra Braid 3x', price:4000, display:'₦4,000', cat:'ATTACHMENT', brand:'X-PRESSION', emoji:'💖', grad:'linear-gradient(135deg, #fecdd3, #f5d0fe)'},

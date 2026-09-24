@@ -5,18 +5,18 @@ const INSTAGRAM = "https://www.instagram.com/dreamdrifthairs?igsh=cWdxMzlzdms4ND
 const TIKTOK = "https://www.tiktok.com/@dreamdrifthairs";
 
 const products = [
-  { id: 1, name: "Pixy curlies", price: "₦168,000", cat: "WIGS", color: "from-pink-200 to-purple-200", emoji: "💁🏽‍♀️" },
-  { id: 2, name: "Bone Straight 20\"", price: "₦202,000", cat: "WIGS", color: "from-purple-200 to-indigo-200", emoji: "🧑🏽" },
-  { id: 3, name: "Classic Bob 12\"", price: "₦98,000", cat: "WIGS", color: "from-violet-200 to-purple-200", emoji: "💇🏽‍♀️" },
-  { id: 4, name: "Bounce", price: "₦145,000", cat: "WIGS", color: "from-purple-100 to-violet-200", emoji: "✨" },
-  { id: 5, name: "Double Drawn", price: "₦85,000", cat: "WEAVON", color: "from-purple-100 to-pink-100", emoji: "🦋" },
-  { id: 6, name: "Lush Wow Braids", price: "₦5,500", cat: "ATTACHMENT", color: "from-pink-200 to-purple-200", emoji: "💜" },
-  { id: 7, name: "X-Pression Ultra", price: "₦4,000", cat: "ATTACHMENT", color: "from-rose-200 to-pink-200", emoji: "💖" },
-  { id: 8, name: "Daring Abigail", price: "₦3,800", cat: "ATTACHMENT", color: "from-violet-100 to-pink-200", emoji: "🦋" },
-  { id: 9, name: "Lush Sasha Locs", price: "₦6,200", cat: "ATTACHMENT", color: "from-yellow-100 to-purple-200", emoji: "✨" },
-  { id: 10, name: "Mielle Rosemary", price: "₦12,000", cat: "CREAM", color: "from-green-100 to-green-200", emoji: "🌿" },
-  { id: 11, name: "Blue Magic Hair", price: "₦4,500", cat: "CREAM", color: "from-blue-100 to-blue-200", emoji: "💙" },
-  { id: 12, name: "Pink Oil", price: "₦5,500", cat: "CREAM", color: "from-pink-100 to-pink-200", emoji: "🩷" },
+  { id: 1, name: "Pixy curlies", price: "₦168,000", cat: "WIGS", bg: "linear-gradient(135deg, #ffd6e8, #f5d0fe)" },
+  { id: 2, name: "Bone Straight 20\"", price: "₦202,000", cat: "WIGS", bg: "linear-gradient(135deg, #e9d5ff, #d8b4fe)" },
+  { id: 3, name: "Classic Bob 12\"", price: "₦98,000", cat: "WIGS", bg: "linear-gradient(135deg, #ddd6fe, #f5d0fe)" },
+  { id: 4, name: "Bounce", price: "₦145,000", cat: "WIGS", bg: "linear-gradient(135deg, #fce7f3, #e9d5ff)" },
+  { id: 5, name: "Double Drawn", price: "₦85,000", cat: "WEAVON", bg: "linear-gradient(135deg, #f3e8ff, #ffd6e8)" },
+  { id: 6, name: "Lush Wow Braids", price: "₦5,500", cat: "ATTACHMENT", bg: "linear-gradient(135deg, #ffc2e0, #e9d5ff)" },
+  { id: 7, name: "X-Pression Ultra", price: "₦4,000", cat: "ATTACHMENT", bg: "linear-gradient(135deg, #fecdd3, #ffd6e8)" },
+  { id: 8, name: "Daring Abigail", price: "₦3,800", cat: "ATTACHMENT", bg: "linear-gradient(135deg, #ede9fe, #fecdd3)" },
+  { id: 9, name: "Lush Sasha Locs", price: "₦6,200", cat: "ATTACHMENT", bg: "linear-gradient(135deg, #fef9c3, #e9d5ff)" },
+  { id: 10, name: "Mielle Rosemary", price: "₦12,000", cat: "CREAM", bg: "linear-gradient(135deg, #dcfce7, #bbf7d0)" },
+  { id: 11, name: "Blue Magic Hair", price: "₦4,500", cat: "CREAM", bg: "linear-gradient(135deg, #dbeafe, #bfdbfe)" },
+  { id: 12, name: "Pink Oil", price: "₦5,500", cat: "CREAM", bg: "linear-gradient(135deg, #ffe4e6, #fecdd3)" },
 ];
 
 const categories = ["ALL", "WIGS", "WEAVON", "ATTACHMENT", "CREAM", "ACCESSORIES"];
@@ -27,71 +27,73 @@ export default function App() {
   const [showCheckout, setShowCheckout] = useState(false);
   const [checkoutProduct, setCheckoutProduct] = useState(null);
 
-  const filtered = activeCat === "ALL"? products : products.filter(p => p.cat === activeCat);
+  const filtered = activeCat === "ALL" ? products : products.filter(p => p.cat === activeCat);
 
-  const handleOrder = (product) => {
-    setCart([...cart, product]);
-    setCheckoutProduct(product);
+  const handleOrder = (p) => {
+    setCart([...cart, p]);
+    setCheckoutProduct(p);
     setShowCheckout(true);
   };
 
-  const payWithCard = () => {
-    const msg = `Hi Dream & Drift! 💖%0A%0AI want to pay with CARD:%0A${checkoutProduct?.name} - ${checkoutProduct?.price}%0A%0APlease confirm availability.`;
-    window.open(`https://wa.me/${WHATSAPP}?text=${msg}`, '_blank');
-  };
-
   return (
-    <div className="min-h-screen bg-[#fff5f8]">
-      <header className="sticky top-0 z-20 bg-white border-b border-pink-100 px-4 py-3 flex justify-between items-center">
+    <div style={{ minHeight: '100vh', background: '#fff5f8', fontFamily: 'Inter, sans-serif' }}>
+      {/* HEADER - EXTRA LIT PINK/PURPLE */}
+      <header style={{ background: 'white', borderBottom: '3px solid #f5d0fe', padding: '14px 16px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', position: 'sticky', top: 0, zIndex: 20 }}>
         <div>
-          <h1 className="text-[22px] font-black"><span className="bg-gradient-to-r from-pink-500 to-purple-600 bg-clip-text text-transparent">DREAM</span><span className="text-purple-600">&</span><span className="bg-gradient-to-r from-purple-600 to-pink-500 bg-clip-text text-transparent">DRIFT</span></h1>
-          <p className="text-[10px] tracking-[3px] text-purple-600 font-bold">HAIR AND ACCESSORIES</p>
+          <h1 style={{ fontSize: '22px', fontWeight: 900, margin: 0, background: 'linear-gradient(90deg, #ff1493, #9333ea)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>DREAM & DRIFT</h1>
+          <p style={{ fontSize: '10px', letterSpacing: '3px', fontWeight: 800, color: '#a855f7', marginTop: '2px' }}>HAIR AND ACCESSORIES</p>
         </div>
-        <div className="bg-gradient-to-r from-pink-500 to-purple-600 text-white px-4 py-2 rounded-full text-sm font-bold">CART ({cart.length})</div>
+        <div style={{ background: 'linear-gradient(90deg, #ff1493, #9333ea)', color: 'white', padding: '8px 18px', borderRadius: '30px', fontWeight: 800, fontSize: '13px', boxShadow: '0 6px 18px #a855f760' }}>CART ({cart.length})</div>
       </header>
 
-      <div className="bg-white px-3 py-3 flex gap-2 overflow-x-auto border-b border-purple-100">
-        {categories.map(cat => (
-          <button key={cat} onClick={() => setActiveCat(cat)} className={`px-4 py-2 rounded-full text-xs font-bold whitespace-nowrap border ${activeCat === cat? 'bg-black text-white border-black' : 'bg-white text-purple-600 border-purple-200'}`}>{cat}</button>
+      {/* CATEGORIES */}
+      <div style={{ background: 'white', padding: '12px', display: 'flex', gap: '8px', overflowX: 'auto', borderBottom: '1px solid #fae8ff', position: 'sticky', top: '68px', zIndex: 10 }}>
+        {categories.map(c => (
+          <button key={c} onClick={() => setActiveCat(c)} style={{ padding: '8px 16px', borderRadius: '20px', fontSize: '12px', fontWeight: 800, border: '1px solid', whiteSpace: 'nowrap', cursor: 'pointer', background: activeCat === c ? 'black' : 'white', color: activeCat === c ? 'white' : '#a855f7', borderColor: activeCat === c ? 'black' : '#f5d0fe' }}>{c}</button>
         ))}
       </div>
 
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 p-3">
-        {filtered.map(product => (
-          <div key={product.id} className="bg-white rounded-2xl overflow-hidden shadow-sm border border-pink-50">
-            <div className={`h-32 bg-gradient-to-br ${product.color} flex items-center justify-center text-4xl`}><span>{product.emoji}</span></div>
-            <div className="p-3 text-center">
-              <h3 className="text-[13px] font-semibold text-gray-600">{product.name}</h3>
-              <p className="text-purple-600 font-black text-[15px] my-1.5">{product.price}</p>
-              <button onClick={() => handleOrder(product)} className="w-full bg-gradient-to-r from-pink-500 to-purple-600 text-white text-[10px] font-black py-2.5 rounded-full">ORDER NOW</button>
+      {/* EXTRA LIT BANNER */}
+      <div style={{ margin: '12px', padding: '16px', borderRadius: '18px', background: 'linear-gradient(135deg, #ff1493 0%, #a855f7 50%, #7c3aed 100%)', color: 'white', textAlign: 'center', boxShadow: '0 12px 30px #a855f740' }}>
+        <p style={{ fontWeight: 800, letterSpacing: '2px', fontSize: '12px' }}>✨ PINK x PURPLE LIT COLLECTION ✨</p>
+      </div>
+
+      {/* PRODUCTS - WITH REAL COLORS NOW! */}
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '12px', padding: '12px' }}>
+        {filtered.map(p => (
+          <div key={p.id} style={{ background: 'white', borderRadius: '18px', overflow: 'hidden', border: '1px solid #ffe4e6', boxShadow: '0 8px 20px rgba(168,85,247,0.08)' }}>
+            <div style={{ height: '130px', background: p.bg, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '36px' }}>💖</div>
+            <div style={{ padding: '12px', textAlign: 'center' }}>
+              <h3 style={{ fontSize: '13px', fontWeight: 700, color: '#444', margin: '0 0 6px', height: '32px' }}>{p.name}</h3>
+              <p style={{ fontWeight: 900, color: '#9333ea', fontSize: '15px', margin: '0 0 10px' }}>{p.price}</p>
+              <button onClick={() => handleOrder(p)} style={{ width: '100%', background: 'linear-gradient(90deg, #ff1493, #9333ea)', color: 'white', border: 'none', padding: '10px', borderRadius: '20px', fontWeight: 800, fontSize: '11px', cursor: 'pointer', boxShadow: '0 6px 15px #ff149340' }}>ORDER NOW</button>
             </div>
           </div>
         ))}
       </div>
 
-      <footer className="bg-black text-white mt-6 p-6 text-center">
-        <h2 className="font-black text-lg">DREAM & DRIFT</h2>
-        <p className="text-xs opacity-60 mt-1">Luxury hair • Lagos • 08083813553</p>
-        <div className="flex justify-center gap-3 mt-4">
-          <a href={INSTAGRAM} target="_blank" className="bg-white text-black px-4 py-2 rounded-full text-xs font-bold">📸 Instagram</a>
-          <a href={TIKTOK} target="_blank" className="bg-white text-black px-4 py-2 rounded-full text-xs font-bold">🎵 TikTok</a>
-          <a href={`https://wa.me/${WHATSAPP}`} target="_blank" className="bg-green-500 text-white px-4 py-2 rounded-full text-xs font-bold">💬 WhatsApp</a>
+      {/* FOOTER WITH YOUR LINKS */}
+      <footer style={{ background: 'black', color: 'white', padding: '26px', textAlign: 'center', marginTop: '20px' }}>
+        <h2 style={{ fontWeight: 900, fontSize: '18px', background: 'linear-gradient(90deg, #ff85c2, #c084fc)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>DREAM & DRIFT</h2>
+        <p style={{ fontSize: '11px', opacity: 0.6, marginTop: '6px' }}>Luxury hair • 08083813553 • Lagos</p>
+        <div style={{ display: 'flex', justifyContent: 'center', gap: '10px', marginTop: '16px', flexWrap: 'wrap' }}>
+          <a href={INSTAGRAM} target="_blank" rel="noreferrer" style={{ background: 'white', color: 'black', padding: '8px 14px', borderRadius: '20px', fontSize: '12px', fontWeight: 700, textDecoration: 'none' }}>📸 Instagram</a>
+          <a href={TIKTOK} target="_blank" rel="noreferrer" style={{ background: 'white', color: 'black', padding: '8px 14px', borderRadius: '20px', fontSize: '12px', fontWeight: 700, textDecoration: 'none' }}>🎵 TikTok</a>
+          <a href={`https://wa.me/${WHATSAPP}`} target="_blank" rel="noreferrer" style={{ background: '#25D366', color: 'white', padding: '8px 14px', borderRadius: '20px', fontSize: '12px', fontWeight: 700, textDecoration: 'none' }}>💬 WhatsApp</a>
         </div>
-        <p className="text-[10px] opacity-40 mt-4">© 2026 Dream & Drift</p>
       </footer>
 
+      {/* CHECKOUT MODAL */}
       {showCheckout && checkoutProduct && (
-        <div className="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4">
-          <div className="bg-white rounded-[20px] w-full max-w-[360px] p-5">
-            <h3 className="font-bold text-center">Checkout - {checkoutProduct.name}</h3>
-            <p className="text-xs text-center opacity-50 mb-3">Orders go to 08083813553</p>
-            <input placeholder="Full Name" className="w-full border border-gray-200 rounded-xl p-3 text-sm mb-2" />
-            <input placeholder="Phone Number" className="w-full border border-gray-200 rounded-xl p-3 text-sm mb-2" />
-            <input placeholder="Delivery Address" className="w-full border border-gray-200 rounded-xl p-3 text-sm mb-2" />
-            <input placeholder="Card Holder Name" className="w-full border border-gray-200 rounded-xl p-3 text-sm" />
-            <button onClick={payWithCard} className="w-full mt-4 bg-gradient-to-r from-[#1e0a2e] to-[#ff2d78] text-white font-black py-3.5 rounded-xl text-sm">PAY {checkoutProduct.name.toUpperCase()} WITH CARD →</button>
-            <p className="text-[8px] text-center mt-2 opacity-40">🔒 256-bit Secure</p>
-            <p className="text-xs text-center mt-3 underline cursor-pointer" onClick={() => setShowCheckout(false)}>Close</p>
+        <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.6)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 99, padding: '16px' }}>
+          <div style={{ background: 'white', borderRadius: '20px', padding: '20px', width: '100%', maxWidth: '360px' }}>
+            <h3 style={{ textAlign: 'center', fontWeight: 800 }}>Checkout - {checkoutProduct.name}</h3>
+            <p style={{ textAlign: 'center', fontSize: '11px', opacity: 0.5, marginBottom: '12px' }}>Order goes to 08083813553</p>
+            <input placeholder="Full Name" style={{ width: '100%', padding: '12px', borderRadius: '12px', border: '1px solid #ddd', marginBottom: '8px', boxSizing: 'border-box' }} />
+            <input placeholder="Phone" style={{ width: '100%', padding: '12px', borderRadius: '12px', border: '1px solid #ddd', marginBottom: '8px', boxSizing: 'border-box' }} />
+            <input placeholder="Address" style={{ width: '100%', padding: '12px', borderRadius: '12px', border: '1px solid #ddd', marginBottom: '12px', boxSizing: 'border-box' }} />
+            <button onClick={() => { window.open(`https://wa.me/${WHATSAPP}?text=Hi Dream & Drift! I want to pay with CARD: ${checkoutProduct.name} - ${checkoutProduct.price}`, '_blank'); }} style={{ width: '100%', background: 'linear-gradient(90deg, #1e0a2e, #ff1493)', color: 'white', padding: '14px', borderRadius: '12px', border: 'none', fontWeight: 800 }}>PAY {checkoutProduct.name.toUpperCase()} WITH CARD →</button>
+            <p style={{ textAlign: 'center', marginTop: '12px', fontSize: '12px', textDecoration: 'underline', cursor: 'pointer' }} onClick={() => setShowCheckout(false)}>Close</p>
           </div>
         </div>
       )}

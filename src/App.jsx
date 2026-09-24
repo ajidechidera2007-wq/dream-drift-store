@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 
 const WHATSAPP = "2348083813553";
 const ACCOUNT_NUMBER = "8083813553";
 const BANK_NAME = "Moniepoint";
 const ACCOUNT_NAME = "Dream & Drift";
+const DELIVERY_FEE = 3000;
 
 const products = [
   { id: 1, name: "Afro Rosemary Hair", price: 3500, cat: "ATTACHMENT", img: "/IMG-20260924-WA7560.jpg" },
@@ -45,43 +46,69 @@ const products = [
 ];
 
 const categories = ["ALL", "WIGS", "ATTACHMENT", "CREAM", "ACCESSORIES"];
+const naira = (amount) => `₦${amount.toLocaleString()}`;
 
 export default function App() {
   const [activeCat, setActiveCat] = useState("ALL");
   const [cart, setCart] = useState([]);
+  const [showCart, setShowCart] = useState(false);
   const [showCheckout, setShowCheckout] = useState(false);
-  const [checkoutProduct, setCheckoutProduct] = useState(null);
-  const [payMethod, setPayMethod] = useState("card");
   const [copied, setCopied] = useState(false);
-  const filtered = activeCat === "ALL" ? products : products.filter(p => p.cat === activeCat);
-  const total = checkoutProduct ? checkoutProduct.price + 3000 : 0;
-  const formatNaira = (n) => `₦${n.toLocaleString()}`;
-  const handleOrder = (p) => { setCart([...cart, p]); setCheckoutProduct(p); setShowCheckout(true); };
-  const copyNumber = () => { navigator.clipboard.writeText(ACCOUNT_NUMBER); setCopied(true); setTimeout(()=>setCopied(false),2000); };
+  const [customer, setCustomer] = useState({ name: "", phone: "", address: "" });
+
+  const filtered = useMemo(() => activeCat === "ALL" ? products : products.filter((p) => p.cat === activeCat), [activeCat]);
+  const cartTotal = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+  const delivery = cart.length ? DELIVERY_FEE : 0;
+  const grandTotal = cartTotal + delivery;
+  const cartCount = cart.reduce((sum, item) => sum + item.qty, 0);
+
+  const addToCart = (product) => {
+    setCart((current) => {
+      const found = current.find((item) => item.id === product.id);
+      if (found) return current.map((item) => item.id === product.id ? { ...item, qty: item.qty + 1 } : item);
+      return [...current, { ...product, qty: 1 }];
+    });
+    setShowCart(true);
+  };
+
+  const changeQty = (id, amount) => {
+    setCart((current) => current.map((item) => item.id === id ? { ...item, qty: item.qty + amount } : item).filter((item) => item.qty > 0));
+  };
+
+  const copyNumber = async () => {
+    try { await navigator.clipboard.writeText(ACCOUNT_NUMBER); setCopied(true); setTimeout(() => setCopied(false), 2000); }
+    catch { alert(`Account number: ${ACCOUNT_NUMBER}`); }
+  };
+
+  const whatsappOrder = () => {
+    if (!cart.length) return;
+    const items = cart.map((item) => `• ${item.name} x${item.qty} — ${naira(item.price * item.qty)}`).join("\n");
+    const customerInfo = `\n\nCustomer details:\nName: ${customer.name || "Not provided"}\nPhone: ${customer.phone || "Not provided"}\nAddress: ${customer.address || "Not provided"}`;
+    const message = `Hello Dream & Drift! I want to order:\n\n${items}\n\nItems total: ${naira(cartTotal)}\nDelivery: ${naira(delivery)}\nTOTAL: ${naira(grandTotal)}${customerInfo}`;
+    window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(message)}`, "_blank");
+  };
+
   return (
-    <div style={{ minHeight: '100vh', background: '#fff5f8', fontFamily: 'Inter, sans-serif' }}>
-      <header style={{ background: 'white', padding: '14px 16px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', position: 'sticky', top: 0, zIndex: 20, borderBottom: '3px solid #f5d0fe' }}>
-        <div><h1 style={{ fontSize: '22px', fontWeight: 900, margin: 0, background: 'linear-gradient(90deg, #ff1493, #9333ea)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>DREAM & DRIFT</h1><p style={{ fontSize: '10px', letterSpacing: '3px', fontWeight: 800, color: '#a855f7', margin: 0 }}>HAIR AND ACCESSORIES • 36 PRODUCTS</p></div>
-        <div style={{ background: 'linear-gradient(90deg, #ff1493, #9333ea)', color: 'white', padding: '8px 18px', borderRadius: '30px', fontWeight: 800, fontSize: '13px' }}>CART ({cart.length})</div>
-      </header>
-      <div style={{ background: 'white', padding: '12px', display: 'flex', gap: '8px', overflowX: 'auto' }}>
-        {categories.map(c => (<button key={c} onClick={()=>setActiveCat(c)} style={{ padding: '8px 16px', borderRadius: '20px', fontSize: '12px', fontWeight: 800, border: '1px solid', whiteSpace: 'nowrap', cursor: 'pointer', background: activeCat===c?'black':'white', color: activeCat===c?'white':'#a855f7', borderColor: activeCat===c?'black':'#f5d0fe' }}>{c}</button>))}
-      </div>
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '12px', padding: '12px' }}>
-        {filtered.map(p => (<div key={p.id} style={{ background: 'white', borderRadius: '18px', overflow: 'hidden', border: '1px solid #ffe4e6' }}><div style={{ height: '180px', background: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><img src={p.img} alt={p.name} style={{ width: '100%', height: '100%', objectFit: 'contain', padding: '8px' }} /></div><div style={{ padding: '12px', textAlign: 'center' }}><h3 style={{ fontSize: '11px', fontWeight: 700, margin: '0 0 6px', minHeight: '36px' }}>{p.name}</h3><p style={{ fontWeight: 900, color: '#9333ea', fontSize: '14px', margin: '0 0 10px' }}>{formatNaira(p.price)}</p><button onClick={()=>handleOrder(p)} style={{ width: '100%', background: 'linear-gradient(90deg, #ff1493, #9333ea)', color: 'white', border: 'none', padding: '10px', borderRadius: '20px', fontWeight: 800, fontSize: '11px', cursor: 'pointer' }}>ORDER NOW</button></div></div>))}
-      </div>
-      {showCheckout && checkoutProduct && (
-        <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.7)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 99, padding: '12px' }}>
-          <div style={{ background: 'white', borderRadius: '22px', width: '100%', maxWidth: '420px', maxHeight: '92vh', overflowY: 'auto' }}>
-            <div style={{ padding: '20px 20px 0' }}><h3 style={{ fontWeight: 900, fontSize: '18px', margin: 0 }}>Secure Checkout</h3><p style={{ fontSize: '12px', color: '#888' }}>{checkoutProduct.name}</p></div>
-            <div style={{ margin: '16px', background: '#fdf4ff', borderRadius: '14px', padding: '14px', border: '1px solid #f5d0fe' }}><div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '15px', fontWeight: 900 }}><span>Total + Delivery</span><span style={{ color: '#ff1493' }}>{formatNaira(total)}</span></div></div>
-            <div style={{ padding: '0 16px', display: 'flex', gap: '8px' }}><button onClick={()=>setPayMethod("card")} style={{ flex: 1, padding: '12px', borderRadius: '14px', border: payMethod==='card'?'2px solid #ff1493':'1px solid #ddd', background: payMethod==='card'?'#fff0f6':'white', fontWeight: 900, fontSize: '12px', cursor: 'pointer' }}>💳 CARD</button><button onClick={()=>setPayMethod("transfer")} style={{ flex: 1, padding: '12px', borderRadius: '14px', border: payMethod==='transfer'?'2px solid #ff1493':'1px solid #ddd', background: payMethod==='transfer'?'#fff0f6':'white', fontWeight: 900, fontSize: '12px', cursor: 'pointer' }}>🏦 TRANSFER</button></div>
-            {payMethod==="transfer" && (<div style={{ padding: '16px' }}><div style={{ background: 'white', border: '2px solid #ff1493', borderRadius: '16px', padding: '16px' }}><p style={{ fontSize: '12px', fontWeight: 800, margin: 0, color: '#ff1493' }}>Moniepoint Only</p><p style={{ fontSize: '20px', fontWeight: 900, margin: '8px 0' }}>{ACCOUNT_NUMBER}</p><p style={{ fontSize: '11px', color: '#888' }}>{ACCOUNT_NAME} - {BANK_NAME}</p><button onClick={copyNumber} style={{ background: copied?'#25D366':'black', color: 'white', border: 'none', padding: '8px 14px', borderRadius: '20px', fontSize: '11px', fontWeight: 800 }}>{copied?"Copied!":"Copy Number"}</button></div><button onClick={()=>window.open(`https://wa.me/${WHATSAPP}?text=Hi! I transferred ${formatNaira(total)} to Moniepoint ${ACCOUNT_NUMBER} for ${checkoutProduct.name}.`, '_blank')} style={{ width: '100%', marginTop: '14px', background: 'black', color: 'white', padding: '15px', borderRadius: '14px', border: 'none', fontWeight: 900 }}>I TRANSFERRED →</button></div>)}
-            {payMethod==="card" && (<div style={{ padding: '16px' }}><input placeholder="Card Number" style={{ width: '100%', padding: '13px', borderRadius: '12px', border: '1px solid #ddd', marginBottom: '8px', boxSizing: 'border-box' }} /><div style={{ display: 'flex', gap: '8px' }}><input placeholder="MM/YY" style={{ flex: 1, padding: '13px', borderRadius: '12px', border: '1px solid #ddd' }} /><input placeholder="CVV" style={{ flex: 1, padding: '13px', borderRadius: '12px', border: '1px solid #ddd' }} /></div><button onClick={()=>window.open(`https://wa.me/${WHATSAPP}?text=Hi! I want to pay ${formatNaira(total)} with CARD for ${checkoutProduct.name}.`, '_blank')} style={{ width: '100%', marginTop: '14px', background: 'linear-gradient(90deg, #ff1493, #9333ea)', color: 'white', padding: '15px', borderRadius: '14px', border: 'none', fontWeight: 900 }}>PAY {formatNaira(total)} →</button></div>)}
-            <p style={{ textAlign: 'center', padding: '0 0 16px', fontSize: '12px', textDecoration: 'underline', cursor: 'pointer', color: '#888' }} onClick={()=>setShowCheckout(false)}>Cancel</p>
-          </div>
-        </div>
-      )}
+    <div className="app">
+      <style>{`
+        *{box-sizing:border-box}body{margin:0;background:#fff5f8;font-family:Arial,sans-serif;color:#333}button,input,textarea{font:inherit}.app{min-height:100vh;background:#fff5f8}
+        .header{position:sticky;top:0;z-index:20;background:#fff;padding:14px 16px;display:flex;justify-content:space-between;align-items:center;border-bottom:3px solid #f5d0fe}
+        .brand{font-size:22px;font-weight:900;margin:0;background:linear-gradient(90deg,#ff1493,#9333ea);-webkit-background-clip:text;-webkit-text-fill-color:transparent}.tagline{margin:2px 0 0;font-size:10px;letter-spacing:3px;font-weight:800;color:#a855f7}
+        .cart-button{border:0;color:#fff;font-weight:900;font-size:13px;padding:10px 17px;border-radius:30px;background:linear-gradient(90deg,#ff1493,#9333ea);cursor:pointer}
+        .categories{position:sticky;top:75px;z-index:15;display:flex;gap:8px;overflow-x:auto;padding:12px;background:#fff;border-bottom:1px solid #f5d0fe}.category{flex:0 0 auto;padding:9px 16px;border-radius:22px;border:1px solid #f5d0fe;background:#fff;color:#a855f7;font-weight:900;font-size:12px;cursor:pointer}.category.active{background:#000;border-color:#000;color:#fff}
+        .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;padding:12px;max-width:1100px;margin:0 auto}.card{background:#fff;border:1px solid #ffe4e6;border-radius:18px;overflow:hidden;box-shadow:0 2px 8px rgba(147,51,234,.05)}.image-box{height:190px;background:#fff;display:flex;align-items:center;justify-content:center;overflow:hidden}.image-box img{width:100%;height:100%;object-fit:contain;padding:8px}.card-body{padding:12px;text-align:center}.name{font-size:12px;font-weight:800;line-height:1.3;min-height:32px;margin:0 0 7px}.price{font-size:15px;font-weight:900;color:#9333ea;margin:0 0 10px}.order{width:100%;border:0;color:#fff;padding:11px 8px;border-radius:22px;background:linear-gradient(90deg,#ff1493,#9333ea);font-weight:900;font-size:11px;cursor:pointer}
+        .overlay{position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.65);display:flex;align-items:flex-end;justify-content:center;padding:10px}.panel{width:100%;max-width:480px;max-height:92vh;overflow-y:auto;background:#fff;border-radius:24px 24px 16px 16px;padding:18px}.panel-head{display:flex;justify-content:space-between;align-items:center;gap:10px}.panel h2{margin:0;font-size:20px}.close{border:0;background:#f3f4f6;border-radius:50%;width:36px;height:36px;cursor:pointer;font-size:18px}.cart-row{display:flex;gap:10px;align-items:center;padding:12px 0;border-bottom:1px solid #eee}.thumb{width:62px;height:62px;object-fit:contain;border-radius:10px;background:#fafafa}.cart-info{flex:1;min-width:0}.cart-name{font-size:12px;font-weight:800;margin:0 0 4px}.cart-price{color:#9333ea;font-weight:900;font-size:12px}.qty{display:flex;align-items:center;gap:7px}.qty button{width:28px;height:28px;border:1px solid #ddd;border-radius:8px;background:#fff;cursor:pointer;font-weight:900}.summary{margin-top:14px;padding:14px;border-radius:14px;background:#fdf4ff;border:1px solid #f5d0fe}.line{display:flex;justify-content:space-between;margin:6px 0;font-size:13px}.grand{font-size:17px;font-weight:900;color:#ff1493;border-top:1px solid #e9d5ff;padding-top:9px;margin-top:9px}.primary{width:100%;border:0;border-radius:14px;padding:14px;color:#fff;background:linear-gradient(90deg,#ff1493,#9333ea);font-weight:900;cursor:pointer;margin-top:12px}.secondary{width:100%;border:1px solid #ddd;border-radius:14px;padding:12px;background:#fff;font-weight:800;cursor:pointer;margin-top:8px}.field{width:100%;padding:12px;border:1px solid #ddd;border-radius:11px;margin-top:8px;outline:none}.bank{margin-top:14px;border:2px solid #ff1493;border-radius:16px;padding:14px}.bank-number{font-size:22px;font-weight:900;margin:5px 0}.copy{border:0;background:#111;color:#fff;border-radius:18px;padding:8px 13px;font-size:11px;font-weight:900;cursor:pointer}.note{font-size:11px;color:#777;line-height:1.5}.empty{text-align:center;padding:35px 10px;color:#777}
+        @media(min-width:700px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}.image-box{height:220px}}@media(max-width:380px){.grid{gap:8px;padding:8px}.header{padding:12px 10px}.brand{font-size:19px}.tagline{font-size:8px}.cart-button{padding:9px 12px}}
+      `}</style>
+
+      <header className="header"><div><h1 className="brand">DREAM & DRIFT</h1><p className="tagline">HAIR AND ACCESSORIES • 36 PRODUCTS</p></div><button className="cart-button" onClick={() => setShowCart(true)}>CART ({cartCount})</button></header>
+      <nav className="categories">{categories.map((category) => <button key={category} className={`category ${activeCat === category ? "active" : ""}`} onClick={() => setActiveCat(category)}>{category}</button>)}</nav>
+
+      <main className="grid">{filtered.map((product) => <article className="card" key={product.id}><div className="image-box"><img src={product.img} alt={product.name} loading="lazy" onError={(e) => { e.currentTarget.style.opacity = "0.25"; }} /></div><div className="card-body"><p className="name">{product.name}</p><p className="price">{naira(product.price)}</p><button className="order" onClick={() => addToCart(product)}>ORDER NOW</button></div></article>)}</main>
+
+      {showCart && <div className="overlay" onClick={(e) => e.target === e.currentTarget && setShowCart(false)}><div className="panel"><div className="panel-head"><h2>Your Cart ({cartCount})</h2><button className="close" onClick={() => setShowCart(false)}>×</button></div>{!cart.length ? <div className="empty">Your cart is empty.</div> : <>{cart.map((item) => <div className="cart-row" key={item.id}><img className="thumb" src={item.img} alt={item.name} /><div className="cart-info"><p className="cart-name">{item.name}</p><span className="cart-price">{naira(item.price)}</span></div><div className="qty"><button onClick={() => changeQty(item.id,-1)}>−</button><strong>{item.qty}</strong><button onClick={() => changeQty(item.id,1)}>+</button></div></div>)}<div className="summary"><div className="line"><span>Items</span><strong>{naira(cartTotal)}</strong></div><div className="line"><span>Delivery</span><strong>{naira(delivery)}</strong></div><div className="line grand"><span>Total</span><strong>{naira(grandTotal)}</strong></div></div><button className="primary" onClick={() => { setShowCart(false); setShowCheckout(true); }}>CONTINUE TO ORDER</button></>}</div></div>}
+
+      {showCheckout && <div className="overlay" onClick={(e) => e.target === e.currentTarget && setShowCheckout(false)}><div className="panel"><div className="panel-head"><h2>Complete Your Order</h2><button className="close" onClick={() => setShowCheckout(false)}>×</button></div><p className="note">Enter your details, then send the order to Dream & Drift on WhatsApp.</p><input className="field" placeholder="Your name" value={customer.name} onChange={(e) => setCustomer({...customer,name:e.target.value})}/><input className="field" placeholder="Phone number" inputMode="tel" value={customer.phone} onChange={(e) => setCustomer({...customer,phone:e.target.value})}/><textarea className="field" rows="3" placeholder="Delivery address" value={customer.address} onChange={(e) => setCustomer({...customer,address:e.target.value})}/><div className="summary"><div className="line"><span>Items</span><strong>{naira(cartTotal)}</strong></div><div className="line"><span>Delivery</span><strong>{naira(delivery)}</strong></div><div className="line grand"><span>Total</span><strong>{naira(grandTotal)}</strong></div></div><div className="bank"><strong>PAY BY TRANSFER</strong><p className="note">Moniepoint</p><div className="bank-number">{ACCOUNT_NUMBER}</div><p className="note">{ACCOUNT_NAME} • {BANK_NAME}</p><button className="copy" onClick={copyNumber}>{copied ? "COPIED!" : "COPY ACCOUNT NUMBER"}</button></div><button className="primary" onClick={whatsappOrder}>SEND ORDER ON WHATSAPP</button><p className="note">After sending the order, the seller can confirm availability, delivery details and payment.</p><button className="secondary" onClick={() => setShowCheckout(false)}>CLOSE</button></div></div>}
     </div>
   );
 }

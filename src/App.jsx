@@ -18,7 +18,7 @@ const products = [
   { id: 9, name: "X-Pression Braid Col 1", price: 4200, cat: "ATTACHMENT", img: "/IMG-20260924-WA1048.jpg" },
   { id: 10, name: "X-Pression 100% Kanekalon", price: 4500, cat: "ATTACHMENT", img: "/IMG-20260924-WA2946.jpg" },
   { id: 11, name: "Ebony Chebe Hair Grow Oil", price: 5500, cat: "CREAM", img: "/IMG-20260924-WA8891.jpg" },
-  { id: 12, name: "LUSH Burgundy Braids", price: 5000, cat: "ATTACHMENT", img: "/IMG-20260924-WA3973.jpg" },
+  { id: 12, name: "Supreme Braids 10X", price: 5000, cat: "ATTACHMENT", img: "/products/supreme-braids-10x.jpg" },
   { id: 13, name: "LUSH Jumbo Braids", price: 5000, cat: "ATTACHMENT", img: "/IMG-20260924-WA8690.jpg" },
   { id: 14, name: "LUSH Super Braid", price: 5000, cat: "ATTACHMENT", img: "/IMG-20260924-WA4292.jpg" },
   { id: 15, name: "Oklas Shampoo Set", price: 6000, cat: "CREAM", img: "/IMG-20260924-WA9839.jpg" },
@@ -37,12 +37,12 @@ const products = [
   { id: 28, name: "Edge Brush Set 3-in-1", price: 2500, cat: "ACCESSORIES", img: "/IMG-20260924-WA7268.jpg" },
   { id: 29, name: "Pearl Hair Crown", price: 8000, cat: "ACCESSORIES", img: "/IMG-20260924-WA9601.jpg" },
   { id: 30, name: "Wig Stand Foldable", price: 6500, cat: "ACCESSORIES", img: "/IMG-20260924-WA3064.jpg" },
-  { id: 31, name: "Bone Straight 30 Inch Double Drawn", price: 210000, cat: "WIGS", img: "/IMG-20260924-WA7095.jpg" },
-  { id: 32, name: "Body Wave 22 Inch", price: 185000, cat: "WIGS", img: "/IMG-20260924-WA0862.jpg" },
-  { id: 33, name: "Bob Bone Straight Wig", price: 95000, cat: "WIGS", img: "/IMG-20260924-WA4378.jpg" },
-  { id: 34, name: "Bone Straight Frontal", price: 202000, cat: "WIGS", img: "/IMG-20260924-WA7558.jpg" },
-  { id: 35, name: "Pixy Curl Short Wig", price: 45000, cat: "WIGS", img: "/IMG-20260924-WA1007.jpg" },
-  { id: 36, name: "LUSH Sasha Locs", price: 5500, cat: "ATTACHMENT", img: "/IMG-20260924-WA5597.jpg" },
+  { id: 31, name: "Bone Straight 30 Inch Double Drawn", price: 210000, cat: "WIGS", img: "/products/bone-straight-30-inch.jpg" },
+  { id: 32, name: "Body Wave 22 Inch", price: 185000, cat: "WIGS", img: "/products/body-wave-22-inch.jpg" },
+  { id: 33, name: "Bob Bone Straight Wig", price: 95000, cat: "WIGS", img: "/products/bob-bone-straight-wig.jpg" },
+  { id: 34, name: "Bone Straight Frontal", price: 202000, cat: "WIGS", img: "/products/bone-straight-frontal.jpg" },
+  { id: 35, name: "Pixy Curl Short Wig", price: 45000, cat: "WIGS", img: "/products/pixy-curl-short-wig.jpg" },
+  { id: 36, name: "LUSH Sasha Locs", price: 5500, cat: "ATTACHMENT", img: "/products/lush-sasha-locs.jpg" },
 ];
 
 const categories = ["ALL", "WIGS", "ATTACHMENT", "CREAM", "ACCESSORIES"];

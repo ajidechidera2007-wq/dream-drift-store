@@ -7,46 +7,43 @@ const ACCOUNT_NAME = "Dream & Drift";
 const DELIVERY_FEE = 3000;
 
 const products = [
-  { id: 1, name: "Afro Rosemary Hair", price: 3500, cat: "ATTACHMENT", img: "/IMG-20260924-WA7560.jpg" },
-  { id: 2, name: "Afro Kinky Twist", price: 4000, cat: "ATTACHMENT", img: "/IMG-20260924-WA2843.jpg" },
-  { id: 3, name: "Diva Collection Braid", price: 4500, cat: "ATTACHMENT", img: "/IMG-20260924-WA8972.jpg" },
-  { id: 4, name: "Expression Super Braid", price: 4200, cat: "ATTACHMENT", img: "/IMG-20260924-WA4605.jpg" },
-  { id: 5, name: "Elan No-Lye Relaxer +2 Free", price: 3800, cat: "CREAM", img: "/IMG-20260924-WA0267.jpg" },
-  { id: 6, name: "Olive Oil Relaxer 14", price: 4500, cat: "CREAM", img: "/IMG-20260924-WA6068.jpg" },
-  { id: 7, name: "No-Lye Salon Pac 3", price: 5000, cat: "CREAM", img: "/IMG-20260924-WA0878.jpg" },
-  { id: 8, name: "LUSH Wow Braids Col 1", price: 5000, cat: "ATTACHMENT", img: "/IMG-20260924-WA5620.jpg" },
-  { id: 9, name: "X-Pression Braid Col 1", price: 4200, cat: "ATTACHMENT", img: "/IMG-20260924-WA1048.jpg" },
-  { id: 10, name: "X-Pression 100% Kanekalon", price: 4500, cat: "ATTACHMENT", img: "/IMG-20260924-WA2946.jpg" },
-  { id: 11, name: "Ebony Chebe Hair Grow Oil", price: 5500, cat: "CREAM", img: "/IMG-20260924-WA8891.jpg" },
-  { id: 12, name: "Supreme Braids 10X", price: 5000, cat: "ATTACHMENT", img: "/products/supreme-braids-10x.jpg" },
-  { id: 13, name: "LUSH Jumbo Braids", price: 5000, cat: "ATTACHMENT", img: "/IMG-20260924-WA8690.jpg" },
-  { id: 14, name: "LUSH Super Braid", price: 5000, cat: "ATTACHMENT", img: "/IMG-20260924-WA4292.jpg" },
-  { id: 15, name: "Oklas Shampoo Set", price: 6000, cat: "CREAM", img: "/IMG-20260924-WA9839.jpg" },
-  { id: 16, name: "ORS Olive Oil Girls Relaxer", price: 4000, cat: "CREAM", img: "/IMG-20260924-WA5271.jpg" },
-  { id: 17, name: "Ozone Hair Relaxer", price: 3000, cat: "CREAM", img: "/IMG-20260924-WA0468.jpg" },
-  { id: 18, name: "Mega Growth Anti-Damage", price: 4500, cat: "CREAM", img: "/IMG-20260924-WA5083.jpg" },
-  { id: 19, name: "Petals Super Hold Gel", price: 2500, cat: "CREAM", img: "/IMG-20260924-WA9081.jpg" },
-  { id: 20, name: "Relax Regular Hair Cream", price: 4500, cat: "CREAM", img: "/IMG-20260924-WA5442.jpg" },
-  { id: 21, name: "Beva Conditioning Relaxer", price: 5000, cat: "CREAM", img: "/IMG-20260924-WA8730.jpg" },
-  { id: 22, name: "Elan Shampoo + Conditioner", price: 7500, cat: "CREAM", img: "/IMG-20260924-WA4910.jpg" },
-  { id: 23, name: "Hair Foods Soul Mate", price: 4000, cat: "CREAM", img: "/IMG-20260924-WA0731.jpg" },
-  { id: 24, name: "Kaima Edge Control", price: 3500, cat: "CREAM", img: "/IMG-20260924-WA3711.jpg" },
-  { id: 25, name: "Tip-Top Aloe Shampoo", price: 3000, cat: "CREAM", img: "/IMG-20260924-WA8324.jpg" },
-  { id: 26, name: "Elan Shea Butter Relaxer", price: 5500, cat: "CREAM", img: "/IMG-20260924-WA1276.jpg" },
-  { id: 27, name: "Satin Bonnet", price: 3500, cat: "ACCESSORIES", img: "/IMG-20260924-WA1222.jpg" },
-  { id: 28, name: "Edge Brush Set 3-in-1", price: 2500, cat: "ACCESSORIES", img: "/IMG-20260924-WA7268.jpg" },
-  { id: 29, name: "Pearl Hair Crown", price: 8000, cat: "ACCESSORIES", img: "/IMG-20260924-WA9601.jpg" },
-  { id: 30, name: "Wig Stand Foldable", price: 6500, cat: "ACCESSORIES", img: "/IMG-20260924-WA5597.jpg" },
-  { id: 31, name: "Bone Straight 30 Inch Double Drawn", price: 210000, cat: "WIGS", img: "/products/bone-straight-30-inch.jpg" },
-  { id: 32, name: "Body Wave 22 Inch", price: 185000, cat: "WIGS", img: "/products/body-wave-22-inch.jpg" },
-  { id: 33, name: "Bob Bone Straight Wig", price: 95000, cat: "WIGS", img: "/products/bob-bone-straight-wig.jpg" },
-  { id: 34, name: "Bone Straight Frontal", price: 202000, cat: "WIGS", img: "/products/bone-straight-frontal.jpg" },
-  { id: 35, name: "Pixy Curl Short Wig", price: 45000, cat: "WIGS", img: "/products/pixy-curl-short-wig.jpg" },
-  { id: 36, name: "LUSH Sasha Locs", price: 5500, cat: "ATTACHMENT", img: "/products/lush-sasha-locs.jpg" },
+  // ATTACHMENT
+  { id: 1, name: "Afro Rosemary Hair", price: 2500, cat: "ATTACHMENT", img: "/IMG-20260924-WA7560.jpg" },
+  { id: 2, name: "Amingo Dancing Curls", price: 4700, cat: "ATTACHMENT", img: "" },
+  { id: 3, name: "Multi", price: 2000, cat: "ATTACHMENT", img: "/IMG-20260924-WA8972.jpg" },
+  { id: 4, name: "Lush Supreme Braid 10X", price: 6500, cat: "ATTACHMENT", img: "/products/supreme-braids-10x~2.jpg" },
+  { id: 5, name: "Lush Curly Braid", price: 7500, cat: "ATTACHMENT", img: "" },
+  { id: 6, name: "X-Pression Rich Braid", price: 4000, cat: "ATTACHMENT", img: "/IMG-20260924-WA1048.jpg" },
+  { id: 7, name: "X-Pression Super Braid", price: 5500, cat: "ATTACHMENT", img: "/IMG-20260924-WA2946.jpg" },
+  { id: 8, name: "Lush Jumbo Braids", price: 5500, cat: "ATTACHMENT", img: "/IMG-20260924-WA8690.jpg" },
+  { id: 9, name: "Lush Wow Braids", price: 4000, cat: "ATTACHMENT", img: "/IMG-20260924-WA5620.jpg" },
+  // CREAM
+  { id: 10, name: "Elan No-Lye Relaxer", price: 1200, cat: "CREAM", img: "/IMG-20260924-WA0267.jpg" },
+  { id: 11, name: "Olive Oil Relaxer", price: 1200, cat: "CREAM", img: "/IMG-20260924-WA6068.jpg" },
+  { id: 12, name: "Lush No-Lye Relaxer", price: 1200, cat: "CREAM", img: "/IMG-20260924-WA0878.jpg" },
+  { id: 13, name: "Front Hair and Scalp Treatment", price: 1500, cat: "CREAM", img: "/IMG-20260924-WA8891.jpg" },
+  { id: 14, name: "Topklass Shampoo & Conditioner", price: 2200, cat: "CREAM", img: "/IMG-20260924-WA9839.jpg" },
+  { id: 15, name: "ORS Olive Oil Girls Relaxer", price: 1200, cat: "CREAM", img: "/IMG-20260924-WA5271.jpg" },
+  { id: 16, name: "Ozone Hair Relaxer (Medium)", price: 1500, cat: "CREAM", img: "/IMG-20260924-WA0468.jpg" },
+  { id: 17, name: "Mega Growth Relaxer", price: 1200, cat: "CREAM", img: "/IMG-20260924-WA5083.jpg" },
+  { id: 18, name: "Petals Gel (Medium)", price: 400, cat: "CREAM", img: "/IMG-20260924-WA9081.jpg" },
+  { id: 19, name: "Relax Regular Hair Cream Relaxer (Big)", price: 2500, cat: "CREAM", img: "/IMG-20260924-WA5442.jpg" },
+  { id: 20, name: "Beva Conditioning Relaxer (Big)", price: 2500, cat: "CREAM", img: "/IMG-20260924-WA8730.jpg" },
+  { id: 21, name: "Elan Shampoo + Conditioner (Big)", price: 1500, cat: "CREAM", img: "/IMG-20260924-WA4910.jpg" },
+  { id: 22, name: "Hair Foods Hair Creams (Big)", price: 4500, cat: "CREAM", img: "/IMG-20260924-WA0731.jpg" },
+  { id: 23, name: "Kaima Edge Control", price: 1500, cat: "CREAM", img: "/IMG-20260924-WA3711.jpg" },
 ];
 
-const categories = ["ALL", "WIGS", "ATTACHMENT", "CREAM", "ACCESSORIES"];
+const categories = ["ALL", "ATTACHMENT", "CREAM"];
 const naira = (amount) => `₦${amount.toLocaleString()}`;
+
+function ProductImage({ src, alt, className }) {
+  const [failed, setFailed] = useState(false);
+  if (!src || failed) {
+    return <div className={className ? `${className} placeholder` : "placeholder"}>Photo coming soon</div>;
+  }
+  return <img className={className} src={src} alt={alt} loading="lazy" onError={() => setFailed(true)} />;
+}
 
 export default function App() {
   const [activeCat, setActiveCat] = useState("ALL");
@@ -97,16 +94,16 @@ export default function App() {
         .cart-button{border:0;color:#fff;font-weight:900;font-size:13px;padding:10px 17px;border-radius:30px;background:linear-gradient(90deg,#ff1493,#9333ea);cursor:pointer}
         .categories{position:sticky;top:75px;z-index:15;display:flex;gap:8px;overflow-x:auto;padding:12px;background:#fff;border-bottom:1px solid #f5d0fe}.category{flex:0 0 auto;padding:9px 16px;border-radius:22px;border:1px solid #f5d0fe;background:#fff;color:#a855f7;font-weight:900;font-size:12px;cursor:pointer}.category.active{background:#000;border-color:#000;color:#fff}
         .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;padding:12px;max-width:1100px;margin:0 auto}.card{background:#fff;border:1px solid #ffe4e6;border-radius:18px;overflow:hidden;box-shadow:0 2px 8px rgba(147,51,234,.05)}.image-box{height:190px;background:#fff;display:flex;align-items:center;justify-content:center;overflow:hidden}.image-box img{width:100%;height:100%;object-fit:contain;padding:8px}.card-body{padding:12px;text-align:center}.name{font-size:12px;font-weight:800;line-height:1.3;min-height:32px;margin:0 0 7px}.price{font-size:15px;font-weight:900;color:#9333ea;margin:0 0 10px}.order{width:100%;border:0;color:#fff;padding:11px 8px;border-radius:22px;background:linear-gradient(90deg,#ff1493,#9333ea);font-weight:900;font-size:11px;cursor:pointer}
-        .overlay{position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.65);display:flex;align-items:flex-end;justify-content:center;padding:10px}.panel{width:100%;max-width:480px;max-height:92vh;overflow-y:auto;background:#fff;border-radius:24px 24px 16px 16px;padding:18px}.panel-head{display:flex;justify-content:space-between;align-items:center;gap:10px}.panel h2{margin:0;font-size:20px}.close{border:0;background:#f3f4f6;border-radius:50%;width:36px;height:36px;cursor:pointer;font-size:18px}.cart-row{display:flex;gap:10px;align-items:center;padding:12px 0;border-bottom:1px solid #eee}.thumb{width:62px;height:62px;object-fit:contain;border-radius:10px;background:#fafafa}.cart-info{flex:1;min-width:0}.cart-name{font-size:12px;font-weight:800;margin:0 0 4px}.cart-price{color:#9333ea;font-weight:900;font-size:12px}.qty{display:flex;align-items:center;gap:7px}.qty button{width:28px;height:28px;border:1px solid #ddd;border-radius:8px;background:#fff;cursor:pointer;font-weight:900}.summary{margin-top:14px;padding:14px;border-radius:14px;background:#fdf4ff;border:1px solid #f5d0fe}.line{display:flex;justify-content:space-between;margin:6px 0;font-size:13px}.grand{font-size:17px;font-weight:900;color:#ff1493;border-top:1px solid #e9d5ff;padding-top:9px;margin-top:9px}.primary{width:100%;border:0;border-radius:14px;padding:14px;color:#fff;background:linear-gradient(90deg,#ff1493,#9333ea);font-weight:900;cursor:pointer;margin-top:12px}.secondary{width:100%;border:1px solid #ddd;border-radius:14px;padding:12px;background:#fff;font-weight:800;cursor:pointer;margin-top:8px}.field{width:100%;padding:12px;border:1px solid #ddd;border-radius:11px;margin-top:8px;outline:none}.bank{margin-top:14px;border:2px solid #ff1493;border-radius:16px;padding:14px}.bank-number{font-size:22px;font-weight:900;margin:5px 0}.copy{border:0;background:#111;color:#fff;border-radius:18px;padding:8px 13px;font-size:11px;font-weight:900;cursor:pointer}.note{font-size:11px;color:#777;line-height:1.5}.empty{text-align:center;padding:35px 10px;color:#777}
+        .overlay{position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.65);display:flex;align-items:flex-end;justify-content:center;padding:10px}.panel{width:100%;max-width:480px;max-height:92vh;overflow-y:auto;background:#fff;border-radius:24px 24px 16px 16px;padding:18px}.panel-head{display:flex;justify-content:space-between;align-items:center;gap:10px}.panel h2{margin:0;font-size:20px}.close{border:0;background:#f3f4f6;border-radius:50%;width:36px;height:36px;cursor:pointer;font-size:18px}.cart-row{display:flex;gap:10px;align-items:center;padding:12px 0;border-bottom:1px solid #eee}.thumb{width:62px;height:62px;object-fit:contain;border-radius:10px;background:#fafafa}.cart-info{flex:1;min-width:0}.cart-name{font-size:12px;font-weight:800;margin:0 0 4px}.cart-price{color:#9333ea;font-weight:900;font-size:12px}.qty{display:flex;align-items:center;gap:7px}.qty button{width:28px;height:28px;border:1px solid #ddd;border-radius:8px;background:#fff;cursor:pointer;font-weight:900}.summary{margin-top:14px;padding:14px;border-radius:14px;background:#fdf4ff;border:1px solid #f5d0fe}.line{display:flex;justify-content:space-between;margin:6px 0;font-size:13px}.grand{font-size:17px;font-weight:900;color:#ff1493;border-top:1px solid #e9d5ff;padding-top:9px;margin-top:9px}.primary{width:100%;border:0;border-radius:14px;padding:14px;color:#fff;background:linear-gradient(90deg,#ff1493,#9333ea);font-weight:900;cursor:pointer;margin-top:12px}.secondary{width:100%;border:1px solid #ddd;border-radius:14px;padding:12px;background:#fff;font-weight:800;cursor:pointer;margin-top:8px}.field{width:100%;padding:12px;border:1px solid #ddd;border-radius:11px;margin-top:8px;outline:none}.bank{margin-top:14px;border:2px solid #ff1493;border-radius:16px;padding:14px}.bank-number{font-size:22px;font-weight:900;margin:5px 0}.copy{border:0;background:#111;color:#fff;border-radius:18px;padding:8px 13px;font-size:11px;font-weight:900;cursor:pointer}.note{font-size:11px;color:#777;line-height:1.5}.empty{text-align:center;padding:35px 10px;color:#777}.placeholder{display:flex;align-items:center;justify-content:center;text-align:center;width:100%;height:100%;background:#fdf4ff;color:#a855f7;font-weight:800;font-size:12px;padding:8px}.thumb.placeholder{width:62px;height:62px;font-size:9px;flex:0 0 62px;border-radius:10px}
         @media(min-width:700px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}.image-box{height:220px}}@media(max-width:380px){.grid{gap:8px;padding:8px}.header{padding:12px 10px}.brand{font-size:19px}.tagline{font-size:8px}.cart-button{padding:9px 12px}}
       `}</style>
 
-      <header className="header"><div><h1 className="brand">DREAM & DRIFT</h1><p className="tagline">HAIR AND ACCESSORIES • 36 PRODUCTS</p></div><button className="cart-button" onClick={() => setShowCart(true)}>CART ({cartCount})</button></header>
+      <header className="header"><div><h1 className="brand">DREAM & DRIFT</h1><p className="tagline">HAIR AND ACCESSORIES • {products.length} PRODUCTS</p></div><button className="cart-button" onClick={() => setShowCart(true)}>CART ({cartCount})</button></header>
       <nav className="categories">{categories.map((category) => <button key={category} className={`category ${activeCat === category ? "active" : ""}`} onClick={() => setActiveCat(category)}>{category}</button>)}</nav>
 
-      <main className="grid">{filtered.map((product) => <article className="card" key={product.id}><div className="image-box"><img src={product.img} alt={product.name} loading="lazy" onError={(e) => { e.currentTarget.style.opacity = "0.25"; }} /></div><div className="card-body"><p className="name">{product.name}</p><p className="price">{naira(product.price)}</p><button className="order" onClick={() => addToCart(product)}>ORDER NOW</button></div></article>)}</main>
+      <main className="grid">{filtered.map((product) => <article className="card" key={product.id}><div className="image-box"><ProductImage src={product.img} alt={product.name} /></div><div className="card-body"><p className="name">{product.name}</p><p className="price">{naira(product.price)}</p><button className="order" onClick={() => addToCart(product)}>ORDER NOW</button></div></article>)}</main>
 
-      {showCart && <div className="overlay" onClick={(e) => e.target === e.currentTarget && setShowCart(false)}><div className="panel"><div className="panel-head"><h2>Your Cart ({cartCount})</h2><button className="close" onClick={() => setShowCart(false)}>×</button></div>{!cart.length ? <div className="empty">Your cart is empty.</div> : <>{cart.map((item) => <div className="cart-row" key={item.id}><img className="thumb" src={item.img} alt={item.name} /><div className="cart-info"><p className="cart-name">{item.name}</p><span className="cart-price">{naira(item.price)}</span></div><div className="qty"><button onClick={() => changeQty(item.id,-1)}>−</button><strong>{item.qty}</strong><button onClick={() => changeQty(item.id,1)}>+</button></div></div>)}<div className="summary"><div className="line"><span>Items</span><strong>{naira(cartTotal)}</strong></div><div className="line"><span>Delivery</span><strong>{naira(delivery)}</strong></div><div className="line grand"><span>Total</span><strong>{naira(grandTotal)}</strong></div></div><button className="primary" onClick={() => { setShowCart(false); setShowCheckout(true); }}>CONTINUE TO ORDER</button></>}</div></div>}
+      {showCart && <div className="overlay" onClick={(e) => e.target === e.currentTarget && setShowCart(false)}><div className="panel"><div className="panel-head"><h2>Your Cart ({cartCount})</h2><button className="close" onClick={() => setShowCart(false)}>×</button></div>{!cart.length ? <div className="empty">Your cart is empty.</div> : <>{cart.map((item) => <div className="cart-row" key={item.id}><ProductImage className="thumb" src={item.img} alt={item.name} /><div className="cart-info"><p className="cart-name">{item.name}</p><span className="cart-price">{naira(item.price)}</span></div><div className="qty"><button onClick={() => changeQty(item.id,-1)}>−</button><strong>{item.qty}</strong><button onClick={() => changeQty(item.id,1)}>+</button></div></div>)}<div className="summary"><div className="line"><span>Items</span><strong>{naira(cartTotal)}</strong></div><div className="line"><span>Delivery</span><strong>{naira(delivery)}</strong></div><div className="line grand"><span>Total</span><strong>{naira(grandTotal)}</strong></div></div><button className="primary" onClick={() => { setShowCart(false); setShowCheckout(true); }}>CONTINUE TO ORDER</button></>}</div></div>}
 
       {showCheckout && <div className="overlay" onClick={(e) => e.target === e.currentTarget && setShowCheckout(false)}><div className="panel"><div className="panel-head"><h2>Complete Your Order</h2><button className="close" onClick={() => setShowCheckout(false)}>×</button></div><p className="note">Enter your details, then send the order to Dream & Drift on WhatsApp.</p><input className="field" placeholder="Your name" value={customer.name} onChange={(e) => setCustomer({...customer,name:e.target.value})}/><input className="field" placeholder="Phone number" inputMode="tel" value={customer.phone} onChange={(e) => setCustomer({...customer,phone:e.target.value})}/><textarea className="field" rows="3" placeholder="Delivery address" value={customer.address} onChange={(e) => setCustomer({...customer,address:e.target.value})}/><div className="summary"><div className="line"><span>Items</span><strong>{naira(cartTotal)}</strong></div><div className="line"><span>Delivery</span><strong>{naira(delivery)}</strong></div><div className="line grand"><span>Total</span><strong>{naira(grandTotal)}</strong></div></div><div className="bank"><strong>PAY BY TRANSFER</strong><p className="note">Moniepoint</p><div className="bank-number">{ACCOUNT_NUMBER}</div><p className="note">{ACCOUNT_NAME} • {BANK_NAME}</p><button className="copy" onClick={copyNumber}>{copied ? "COPIED!" : "COPY ACCOUNT NUMBER"}</button></div><button className="primary" onClick={whatsappOrder}>SEND ORDER ON WHATSAPP</button><p className="note">After sending the order, the seller can confirm availability, delivery details and payment.</p><button className="secondary" onClick={() => setShowCheckout(false)}>CLOSE</button></div></div>}
     </div>

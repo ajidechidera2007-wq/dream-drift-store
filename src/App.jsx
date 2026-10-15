@@ -9,10 +9,10 @@ const DELIVERY_FEE = 3000;
 const products = [
   // ATTACHMENT
   { id: 1, name: "Afro Rosemary Hair", price: 2500, cat: "ATTACHMENT", img: "/IMG-20260924-WA7560.jpg" },
-  { id: 2, name: "Amingo Dancing Curls", price: 4700, cat: "ATTACHMENT", img: "" },
+  { id: 2, name: "Amingo Dancing Curls", price: 4700, cat: "ATTACHMENT", img: "/products/amingo-dancing-curls.png" },
   { id: 3, name: "Multi", price: 2000, cat: "ATTACHMENT", img: "/IMG-20260924-WA8972.jpg" },
   { id: 4, name: "Lush Supreme Braid 10X", price: 6500, cat: "ATTACHMENT", img: "/products/supreme-braids-10x~2.jpg" },
-  { id: 5, name: "Lush Curly Braid", price: 7500, cat: "ATTACHMENT", img: "" },
+  { id: 5, name: "Lush Curly Braid", price: 7500, cat: "ATTACHMENT", img: "/products/lush-curly-braid.jpg" },
   { id: 6, name: "X-Pression Rich Braid", price: 4000, cat: "ATTACHMENT", img: "/IMG-20260924-WA1048.jpg" },
   { id: 7, name: "X-Pression Super Braid", price: 5500, cat: "ATTACHMENT", img: "/IMG-20260924-WA2946.jpg" },
   { id: 8, name: "Lush Jumbo Braids", price: 5500, cat: "ATTACHMENT", img: "/IMG-20260924-WA8690.jpg" },
